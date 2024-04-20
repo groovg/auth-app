@@ -1,8 +1,11 @@
 import { db } from "@/lib/db";
+import { DividerHorizontalIcon } from "@radix-ui/react-icons";
 
 export const getUserByEmail = async (email: string) => {
   try {
-    const user = await db.user.findUnique({ where: { email } });
+    const user = await db.user.findUnique({
+      where: { email },
+    });
 
     return user;
   } catch {
@@ -12,7 +15,9 @@ export const getUserByEmail = async (email: string) => {
 
 export const getUserById = async (id: string) => {
   try {
-    const user = await db.user.findUnique({ where: { id } });
+    const user = await db.user.findUnique({
+      where: { id },
+    });
 
     return user;
   } catch {
