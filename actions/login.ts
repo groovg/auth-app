@@ -3,24 +3,25 @@
 import * as z from "zod";
 import { AuthError } from "next-auth";
 
+import { db } from "@/lib/db";
 import { signIn } from "@/auth";
 import { LoginSchema } from "@/schemas";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
-import {
-  generateVerificationToken,
-  generateTwoFactorToken,
-} from "@/lib/tokens";
 import { getUserByEmail } from "@/data/user";
+import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import {
   sendVerificationEmail,
   sendTwoFactorTokenEmail,
 } from "@/lib/mail";
-import { db } from "@/lib/db";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import {
+  generateVerificationToken,
+  generateTwoFactorToken,
+} from "@/lib/tokens";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 
 export const login = async (
-  values: z.infer<typeof LoginSchema>
+  values: z.infer<typeof LoginSchema>,
+  callbackUrl?: string | null
 ) => {
   const validatedFields = LoginSchema.safeParse(values);
 
@@ -113,7 +114,7 @@ export const login = async (
     await signIn("credentials", {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError) {
