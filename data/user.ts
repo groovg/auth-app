@@ -1,5 +1,4 @@
 import { db } from "@/lib/db";
-import { DividerHorizontalIcon } from "@radix-ui/react-icons";
 
 export const getUserByEmail = async (email: string) => {
   try {
