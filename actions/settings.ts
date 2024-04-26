@@ -79,7 +79,7 @@ export const settings = async (
     },
   });
 
-  await unstable_update({
+  unstable_update({
     user: {
       name: updatedUser.name,
       email: updatedUser.email,
