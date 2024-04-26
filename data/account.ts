@@ -7,6 +7,8 @@ export const getAccountByUserId = async (
     const account = await db.account.findFirst({
       where: { userId },
     });
+
+    return account;
   } catch {
     return null;
   }

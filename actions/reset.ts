@@ -13,7 +13,7 @@ export const reset = async (
   const validatedFields = ResetSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid email!" };
+    return { error: "Invalid emaiL!" };
   }
 
   const { email } = validatedFields.data;

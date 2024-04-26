@@ -1,5 +1,5 @@
-import { UserRole } from "@prisma/client";
 import * as z from "zod";
+import { UserRole } from "@prisma/client";
 
 export const SettingsSchema = z
   .object({
@@ -10,7 +10,6 @@ export const SettingsSchema = z
     password: z.optional(z.string().min(6)),
     newPassword: z.optional(z.string().min(6)),
   })
-
   .refine(
     (data) => {
       if (data.password && !data.newPassword) {
@@ -40,7 +39,7 @@ export const SettingsSchema = z
 
 export const NewPasswordSchema = z.object({
   password: z.string().min(6, {
-    message: "Minimum of 6 characters required!",
+    message: "Minimum of 6 characters required",
   }),
 });
 

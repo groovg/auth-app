@@ -1,17 +1,13 @@
 "use client";
 
 import * as z from "zod";
-
-import { CardWrapper } from "@/components/auth/card-wrapper";
-
-import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { NewPasswordSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
-
 import {
   Form,
   FormControl,
@@ -20,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -50,8 +47,6 @@ export const NewPasswordForm = () => {
     setError("");
     setSuccess("");
 
-    console.log(values);
-
     startTransition(() => {
       newPassword(values, token).then((data) => {
         setError(data?.error);
@@ -63,7 +58,7 @@ export const NewPasswordForm = () => {
   return (
     <CardWrapper
       headerLabel="Enter a new password"
-      backButtonLabel="Back to Login"
+      backButtonLabel="Back to login"
       backButtonHref="/auth/login">
       <Form {...form}>
         <form

@@ -1,11 +1,11 @@
 import bcrypt from "bcryptjs";
 import type { NextAuthConfig } from "next-auth";
-import credentials from "next-auth/providers/credentials";
+import Credentials from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 
 import { LoginSchema } from "@/schemas";
-import { getUserByEmail } from "./data/user";
+import { getUserByEmail } from "@/data/user";
 
 export default {
   providers: [
@@ -17,7 +17,7 @@ export default {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
-    credentials({
+    Credentials({
       async authorize(credentials) {
         const validatedFields =
           LoginSchema.safeParse(credentials);
@@ -32,8 +32,10 @@ export default {
             password,
             user.password
           );
+
           if (passwordsMatch) return user;
         }
+
         return null;
       },
     }),

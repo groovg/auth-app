@@ -1,15 +1,12 @@
 "use client";
 
 import * as z from "zod";
-
-import { CardWrapper } from "@/components/auth/card-wrapper";
-
-import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { ResetSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
-
 import {
   Form,
   FormControl,
@@ -18,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -45,8 +43,6 @@ export const ResetForm = () => {
     setError("");
     setSuccess("");
 
-    console.log(values);
-
     startTransition(() => {
       reset(values).then((data) => {
         setError(data?.error);
@@ -58,7 +54,7 @@ export const ResetForm = () => {
   return (
     <CardWrapper
       headerLabel="Forgot your password?"
-      backButtonLabel="Back to Login"
+      backButtonLabel="Back to login"
       backButtonHref="/auth/login">
       <Form {...form}>
         <form

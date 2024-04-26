@@ -9,7 +9,6 @@ import {
   CardContent,
   CardHeader,
 } from "@/components/ui/card";
-import { useCurrentRole } from "@/hooks/use-current-role";
 import { UserRole } from "@prisma/client";
 import { toast } from "sonner";
 
@@ -40,7 +39,7 @@ const AdminPage = () => {
     <Card className="w-[600px]">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">
-          🔑Admin
+          🔑 Admin
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -55,6 +54,7 @@ const AdminPage = () => {
             Click to test
           </Button>
         </div>
+
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md">
           <p className="text-sm font-medium">
             Admin-only Server Action
